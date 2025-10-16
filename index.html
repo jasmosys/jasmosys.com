@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JasmoSys - Sensemaking in Motion</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Microsoft-anchored, AI-ready architecture. Power Platform, Dynamics 365, Copilot, and Azure AI solutions. Former Microsoft Principal Architect leadership.">
+    <meta name="keywords" content="Power Platform, Dynamics 365, Copilot, Microsoft AI, Dataverse, Azure AI, Power Automate, enterprise architecture">
+    <meta name="author" content="JasmoSys">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="JasmoSys - Sensemaking in Motion">
+    <meta property="og:description" content="Microsoft-anchored architecture. Former Microsoft Principal Architect leadership.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jasmosys.com">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --charcoal: #1a1d23;
+            --charcoal-light: #242831;
+            --soft-white: #F5F7FA;
+            --accent-cyan: #00D9FF;
+            --accent-lilac: #B794F6;
+            --gray: #9BA3B4;
+            
+            /* Microsoft Colors */
+            --power-platform: #742774;
+            --dynamics: #002050;
+            --copilot: #8B57E8;
+            --azure: #0078D4;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, 
+                #0a0b0f 0%, 
+                #14161c 10%,
+                #1a1d23 25%, 
+                #242831 40%, 
+                #2c313d 50%, 
+                #242831 60%,
+                #1a1d23 75%, 
+                #14161c 90%,
+                #0a0b0f 100%);
+            background-attachment: fixed;
+            color: var(--soft-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle grid pattern overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Additional radial gradient for depth */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center top, rgba(0, 217, 255, 0.05) 0%, transparent 40%),
+                        radial-gradient(ellipse at center bottom, rgba(183, 148, 246, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 17, 23, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(15, 17, 23, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+        }
+
+        .logo-text {
+            font-size: 1.65rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-lilac));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--soft-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-lilac));
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--soft-white);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 76px;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 17, 23, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--soft-white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(183, 148, 246, 0.15));
+            border: 1px solid rgba(0, 217, 255, 0.4);
+            border-radius: 50px;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--accent-cyan) 50%, var(--soft-white) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.15rem, 2vw, 1.5rem);
+            color: var(--gray);
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .hero-subtitle strong {
+            color: var(--soft-white);
+            font-weight: 600;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-lilac));
+            color: #0f1117;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.4);
+            animation: subtle-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes subtle-pulse {
+            0%, 100% {
+                box-shadow: 0 10px 40px rgba(0, 217, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 15px 50px rgba(0, 217, 255, 0.5);
+            }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.6);
+            animation: none;
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--soft-white);
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        /* Credentials Bar */
+        .credentials-bar {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(183, 148, 246, 0.08));
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .credentials-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .credential-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .credential-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .credential-icon {
+            font-size: 2.2rem;
+        }
+
+        .credential-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .credential-title {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .credential-subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 7rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3.8rem);
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--soft-white), var(--accent-lilac));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Products Showcase */
+        .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 217, 255, 0.08), transparent);
+            transform: rotate(45deg) translateY(100%);
+            transition: transform 0.7s ease;
+        }
+
+        .product-card:hover::after {
+            transform: rotate(45deg) translateY(-100%);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            transition: all 0.5s ease;
+        }
+
+        .product-card.power-platform::before {
+            background: linear-gradient(90deg, #742774, #9b4d9b);
+        }
+
+        .product-card.dynamics::before {
+            background: linear-gradient(90deg, #002050, #0078D4);
+        }
+
+        .product-card.ai::before {
+            background: linear-gradient(90deg, #0078D4, #00a4ef);
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(0, 217, 255, 0.4);
+            box-shadow: 0 30px 80px rgba(0, 217, 255, 0.3);
+        }
+
+        .product-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            transition: all 0.5s ease;
+        }
+
+        .product-card.power-platform .product-logo {
+            background: linear-gradient(135deg, rgba(116, 39, 116, 0.25), rgba(155, 77, 155, 0.25));
+        }
+
+        .product-card.dynamics .product-logo {
+            background: linear-gradient(135deg, rgba(0, 32, 80, 0.25), rgba(0, 120, 212, 0.25));
+        }
+
+        .product-card.ai .product-logo {
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.25), rgba(0, 164, 239, 0.25));
+        }
+
+        .product-card:hover .product-logo {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .product-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            color: var(--soft-white);
+            font-weight: 700;
+        }
+
+        .product-card p {
+            color: var(--gray);
+            line-height: 1.85;
+            font-size: 1.05rem;
+        }
+
+        /* Services Grid - 4 cards on one line */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 280px;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transform: rotate(45deg) translateY(100%);
+            transition: transform 0.7s ease;
+        }
+
+        .service-card:hover::after {
+            transform: rotate(45deg) translateY(-100%);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .service-card:nth-child(1)::before { background: linear-gradient(180deg, #742774, #9b4d9b); }
+        .service-card:nth-child(2)::before { background: linear-gradient(180deg, #002050, #0078D4); }
+        .service-card:nth-child(3)::before { background: linear-gradient(180deg, #8B57E8, #a67ef0); }
+        .service-card:nth-child(4)::before { background: linear-gradient(180deg, #0078D4, #00a4ef); }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 217, 255, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 217, 255, 0.2),
+                0 0 60px rgba(0, 217, 255, 0.1);
+        }
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.3rem;
+            font-size: 1.7rem;
+            transition: all 0.5s ease;
+        }
+
+        .service-card:nth-child(1) .service-icon {
+            background: linear-gradient(135deg, rgba(116, 39, 116, 0.25), rgba(155, 77, 155, 0.25));
+        }
+
+        .service-card:nth-child(2) .service-icon {
+            background: linear-gradient(135deg, rgba(0, 32, 80, 0.25), rgba(0, 120, 212, 0.25));
+        }
+
+        .service-card:nth-child(3) .service-icon {
+            background: linear-gradient(135deg, rgba(139, 87, 232, 0.25), rgba(166, 126, 240, 0.25));
+        }
+
+        .service-card:nth-child(4) .service-icon {
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.25), rgba(0, 164, 239, 0.25));
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.9rem;
+            color: var(--soft-white);
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.75;
+            font-size: 0.95rem;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-timeline {
+            margin-top: auto;
+            padding-top: 1.3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.88rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* Why Section */
+        .why-grid {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .why-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.5s ease;
+        }
+
+        .why-item:hover {
+            border-left-width: 8px;
+            border-left-color: var(--accent-lilac);
+            transform: translateX(8px);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
+        }
+
+        .why-item strong {
+            color: var(--accent-cyan);
+            font-size: 1.35rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .why-item p {
+            color: var(--gray);
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* Architecture Diagram - PROFESSIONAL */
+        .architecture-section {
+            margin: 5rem 0;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.03), rgba(183, 148, 246, 0.03));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .architecture-diagram {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .arch-layer {
+            margin-bottom: 2.5rem;
+        }
+
+        .arch-layer:last-child {
+            margin-bottom: 0;
+        }
+
+        .layer-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-cyan);
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .arch-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .arch-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .arch-box:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .arch-box.core {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(183, 148, 246, 0.15));
+            border: 2px solid var(--accent-cyan);
+        }
+
+        .arch-box-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--soft-white);
+            margin-bottom: 0.4rem;
+        }
+
+        .arch-box-subtitle {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .flow-arrow {
+            text-align: center;
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        /* Technologies */
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .tech-tag {
+            padding: 0.9rem 2rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            color: var(--soft-white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+            border-color: var(--accent-cyan);
+            background: rgba(0, 217, 255, 0.1);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text h3 {
+            font-size: 2.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+
+        .credentials-box {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(183, 148, 246, 0.08));
+            border: 1px solid rgba(0, 217, 255, 0.25);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .credentials-box h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .credentials-box ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .credentials-box li {
+            color: var(--gray);
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .credentials-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-method {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .contact-method:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .contact-method h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+        }
+
+        .contact-method a {
+            color: var(--soft-white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-method a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .contact-method p {
+            color: var(--gray);
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--soft-white);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: var(--soft-white);
+            font-family: inherit;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        /* Fix dropdown option visibility */
+        .form-group select option,
+        .form-group select optgroup {
+            background: #1a1d23;
+            color: var(--soft-white);
+        }
+
+        .submit-button {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-lilac));
+            color: #0f1117;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.3));
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-lilac));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .footer-tagline {
+            font-style: italic;
+            margin-top: 1rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .contact-wrapper,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .products-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animations */
+        .fade-in.stagger-1 { transition-delay: 0.1s; }
+        .fade-in.stagger-2 { transition-delay: 0.2s; }
+        .fade-in.stagger-3 { transition-delay: 0.3s; }
+        .fade-in.stagger-4 { transition-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <!-- New asymmetric flowing logo -->
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00D9FF;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#B794F6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 20 50 Q 35 20, 50 50 T 80 50" stroke="url(#logoGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    <path d="M 20 60 Q 35 80, 50 50 T 80 60" stroke="url(#logoGradient)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+                </svg>
+                <div class="logo-text">JasmoSys</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#why">Why JasmoSys</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="#why" onclick="toggleMobileMenu()">Why JasmoSys</a></li>
+            <li><a href="#services" onclick="toggleMobileMenu()">Services</a></li>
+            <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+            <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="flowCanvas" class="hero-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">Led by Former Microsoft Principal Architect</div>
+            <h1>Where people and systems find their rhythm.</h1>
+            <p class="hero-subtitle">Microsoft-anchored, AI-ready architecture - <strong>Power Platform</strong>, <strong>Dynamics 365</strong>, <strong>Copilot</strong>, and <strong>Azure AI</strong> - designed to move with your business.</p>
+            <div class="cta-group">
+                <a href="#contact" class="cta-button">Talk to JasmoSys</a>
+                <a href="#services" class="cta-button-secondary">See what we deliver</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials Bar -->
+    <div class="credentials-bar">
+        <div class="credentials-content">
+            <div class="credential-item">
+                <div class="credential-icon">🏆</div>
+                <div class="credential-text">
+                    <span class="credential-title">Microsoft Principal Architect</span>
+                    <span class="credential-subtitle">Platform expertise from the source</span>
+                </div>
+            </div>
+            <div class="credential-item">
+                <div class="credential-icon">📅</div>
+                <div class="credential-text">
+                    <span class="credential-title">16+ Years Experience</span>
+                    <span class="credential-subtitle">Power Platform, Dynamics 365, Azure</span>
+                </div>
+            </div>
+            <div class="credential-item">
+                <div class="credential-icon">🚀</div>
+                <div class="credential-text">
+                    <span class="credential-title">Enterprise Scale</span>
+                    <span class="credential-subtitle">Fortune 500 implementations</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Microsoft Products -->
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-label">Core Expertise</div>
+            <h2>Microsoft-anchored, AI-fluid</h2>
+            <p>Deep capabilities across the Microsoft Cloud ecosystem</p>
+        </div>
+
+        <div class="products-showcase">
+            <div class="product-card power-platform fade-in">
+                <div class="product-logo">⚡</div>
+                <h3>Power Platform</h3>
+                <p>Dataverse architecture, Power Apps, Power Automate, AI Builder, governance frameworks & DLP policies.</p>
+            </div>
+
+            <div class="product-card dynamics fade-in">
+                <div class="product-logo">📊</div>
+                <h3>Dynamics 365</h3>
+                <p>Customer engagement modernization, Sales, Service, Marketing. Business process automation at scale.</p>
+            </div>
+
+            <div class="product-card ai fade-in">
+                <div class="product-logo">🤖</div>
+                <h3>Copilot & AI</h3>
+                <p>Copilot Studio, Azure OpenAI, multi-model orchestration, prompt engineering, responsible AI frameworks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why JasmoSys -->
+    <section id="why">
+        <div class="section-header fade-in">
+            <div class="section-label">Why JasmoSys</div>
+            <h2>Microsoft expertise you can trust</h2>
+            <p>Architecture that ships, backed by proven enterprise experience</p>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-item fade-in">
+                <strong>Microsoft pedigree.</strong>
+                <p>Led by a former Microsoft Principal Architect with 16+ years across the Microsoft business platform ecosystem. We've built enterprise solutions at Microsoft scale and know the platform from the inside.</p>
+            </div>
+
+            <div class="why-item fade-in">
+                <strong>Architecture that delivers.</strong>
+                <p>No endless planning cycles. We design systems that move quickly from concept to production, with governance, security, and scalability built in from day one.</p>
+            </div>
+
+            <div class="why-item fade-in">
+                <strong>Proven at enterprise scale.</strong>
+                <p>We've architected and delivered solutions for Fortune 500 companies. Complex integrations, global deployments, regulated industries - we've solved the hard problems.</p>
+            </div>
+
+            <div class="why-item fade-in">
+                <strong>AI-native from the start.</strong>
+                <p>Every system we design is built for the AI era. Copilot integration, multi-model orchestration, responsible AI frameworks - intelligence woven into the architecture.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="section-header fade-in">
+            <div class="section-label">Services</div>
+            <h2>How we work with you</h2>
+            <p>From rapid assessments to full implementations</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">📐</div>
+                <h3>Architecture Sprints</h3>
+                <p>Rapid assessment, architectural design, Copilot readiness, governance framework, actionable roadmap.</p>
+                <div class="service-timeline">⏱️ 2-4 weeks</div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🏗️</div>
+                <h3>Full Implementation</h3>
+                <p>End-to-end delivery. Dataverse design, apps, integrations, workflows, telemetry. We build it, you own it.</p>
+                <div class="service-timeline">⏱️ 8-24 weeks</div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🛡️</div>
+                <h3>Copilot Governance</h3>
+                <p>Launch your Copilot program. Prompt strategies, grounding, safety guardrails, analytics, enablement.</p>
+                <div class="service-timeline">⏱️ Phased delivery</div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">💼</div>
+                <h3>Contracting</h3>
+                <p>Embedded expertise for your team. Senior architect capacity for critical projects. Flexible terms.</p>
+                <div class="service-timeline">⏱️ Flexible duration</div>
+            </div>
+        </div>
+
+        <!-- Technologies -->
+        <div class="section-header fade-in" style="margin-top: 6rem;">
+            <h3>Technologies & Platforms</h3>
+        </div>
+
+        <div class="technologies fade-in">
+            <span class="tech-tag">Power Platform</span>
+            <span class="tech-tag">Dynamics 365</span>
+            <span class="tech-tag">Copilot Studio</span>
+            <span class="tech-tag">Azure AI</span>
+            <span class="tech-tag">Dataverse</span>
+            <span class="tech-tag">Power Automate</span>
+            <span class="tech-tag">AI Builder</span>
+            <span class="tech-tag">Model-Driven Apps</span>
+            <span class="tech-tag">Canvas Apps</span>
+            <span class="tech-tag">Power BI</span>
+            <span class="tech-tag">Azure OpenAI</span>
+            <span class="tech-tag">ALM & DevOps</span>
+        </div>
+    </section>
+
+    <!-- How We Work -->
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-label">Process</div>
+            <h2>How we work</h2>
+            <p>Simple, transparent, effective</p>
+        </div>
+
+        <div class="why-grid" style="max-width: 900px; margin: 0 auto;">
+            <div class="why-item fade-in" style="text-align: center; border-left: none; border-top: 4px solid var(--accent-cyan);">
+                <strong style="font-size: 1.5rem;">Understand</strong>
+                <p>We learn your environment, challenges, and objectives. No assumptions, just listening and discovery.</p>
+            </div>
+            <div class="why-item fade-in" style="text-align: center; border-left: none; border-top: 4px solid var(--accent-lilac);">
+                <strong style="font-size: 1.5rem;">Design</strong>
+                <p>We architect the solution with your team. Clear documentation, governance built-in, no black boxes.</p>
+            </div>
+            <div class="why-item fade-in" style="text-align: center; border-left: none; border-top: 4px solid var(--accent-cyan);">
+                <strong style="font-size: 1.5rem;">Deliver</strong>
+                <p>We build, test, and deploy together. Knowledge transfer throughout, you own the outcome.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Diagram -->
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-label">The Architecture</div>
+            <h2>Microsoft-Anchored, AI-Fluid</h2>
+            <p>Dataverse at the center, extended intelligently</p>
+        </div>
+
+        <div class="architecture-section fade-in">
+            <svg class="architecture-diagram" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 1200px; margin: 0 auto; display: block;">
+                <!-- Background gradient -->
+                <defs>
+                    <linearGradient id="arch-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.1"/>
+                        <stop offset="100%" stop-color="#B794F6" stop-opacity="0.1"/>
+                    </linearGradient>
+                    <linearGradient id="copilot-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#8B57E8" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#B794F6" stop-opacity="0.2"/>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Title -->
+                <text x="450" y="30" text-anchor="middle" fill="#00D9FF" font-family="Inter" font-size="16" font-weight="600">MICROSOFT CLOUD ARCHITECTURE</text>
+
+                <!-- Core: Dataverse (Center) -->
+                <rect x="350" y="280" width="200" height="100" fill="url(#arch-gradient)" stroke="#00D9FF" stroke-width="3" rx="12" filter="url(#glow)"/>
+                <text x="450" y="310" text-anchor="middle" fill="white" font-family="Inter" font-size="18" font-weight="700">DATAVERSE</text>
+                <text x="450" y="330" text-anchor="middle" fill="#B8BCC8" font-family="Inter" font-size="11">Unified Data Platform</text>
+                <text x="450" y="350" text-anchor="middle" fill="#B8BCC8" font-family="Inter" font-size="9">Entities • Security • Business Rules</text>
+                <text x="450" y="365" text-anchor="middle" fill="#B8BCC8" font-family="Inter" font-size="9">Plugins • Workflows • API</text>
+
+                <!-- Copilot Studio (Prominent Top-Center) -->
+                <rect x="320" y="120" width="260" height="70" fill="url(#copilot-gradient)" stroke="#8B57E8" stroke-width="2" rx="10" filter="url(#glow)"/>
+                <text x="450" y="145" text-anchor="middle" fill="white" font-family="Inter" font-size="16" font-weight="700">COPILOT STUDIO</text>
+                <text x="450" y="165" text-anchor="middle" fill="#B8BCC8" font-family="Inter" font-size="10">Conversational AI • Agents • Orchestration</text>
+                <text x="450" y="180" text-anchor="middle" fill="#B8BCC8" font-family="Inter" font-size="9">Natural Language → Actions</text>
+
+                <!-- User Experience (Top Left) -->
+                <g id="user-experience">
+                    <rect x="50" y="80" width="220" height="120" fill="none" stroke="#B794F6" stroke-width="1.5" rx="8" opacity="0.5"/>
+                    <text x="160" y="100" text-anchor="middle" fill="#B794F6" font-family="Inter" font-size="13" font-weight="600">USER EXPERIENCE</text>
+                    
+                    <!-- Canvas Apps -->
+                    <rect x="70" y="115" width="180" height="25" fill="rgba(183, 148, 246, 0.15)" stroke="#B794F6" stroke-width="1" rx="4"/>
+                    <text x="160" y="132" text-anchor="middle" fill="white" font-size="10">Canvas Apps</text>
+                    
+                    <!-- Power Pages -->
+                    <rect x="70" y="145" width="180" height="25" fill="rgba(183, 148, 246, 0.15)" stroke="#B794F6" stroke-width="1" rx="4"/>
+                    <text x="160" y="162" text-anchor="middle" fill="white" font-size="10">Power Pages (Portals)</text>
+                    
+                    <!-- Custom UI -->
+                    <rect x="70" y="175" width="180" height="20" fill="rgba(183, 148, 246, 0.1)" stroke="#B794F6" stroke-width="1" rx="4"/>
+                    <text x="160" y="189" text-anchor="middle" fill="#B8BCC8" font-size="9">React • Angular • Custom</text>
+                </g>
+
+                <!-- Dynamics 365 Apps (Top Right) - All CE modules with better colors -->
+                <g id="dynamics-apps">
+                    <rect x="630" y="60" width="220" height="160" fill="none" stroke="#00A4EF" stroke-width="1.5" rx="8" opacity="0.5"/>
+                    <text x="740" y="80" text-anchor="middle" fill="#00A4EF" font-family="Inter" font-size="13" font-weight="600">DYNAMICS 365 CE</text>
+                    
+                    <!-- Sales & Service -->
+                    <rect x="650" y="95" width="85" height="25" fill="rgba(0, 164, 239, 0.15)" stroke="#00A4EF" stroke-width="1" rx="4"/>
+                    <text x="692.5" y="112" text-anchor="middle" fill="white" font-size="9">Sales</text>
+                    
+                    <rect x="745" y="95" width="85" height="25" fill="rgba(0, 164, 239, 0.15)" stroke="#00A4EF" stroke-width="1" rx="4"/>
+                    <text x="787.5" y="112" text-anchor="middle" fill="white" font-size="9">Service</text>
+                    
+                    <!-- Marketing & Field Service -->
+                    <rect x="650" y="125" width="85" height="25" fill="rgba(0, 164, 239, 0.15)" stroke="#00A4EF" stroke-width="1" rx="4"/>
+                    <text x="692.5" y="142" text-anchor="middle" fill="white" font-size="9">Marketing</text>
+                    
+                    <rect x="745" y="125" width="85" height="25" fill="rgba(0, 164, 239, 0.15)" stroke="#00A4EF" stroke-width="1" rx="4"/>
+                    <text x="787.5" y="142" text-anchor="middle" fill="white" font-size="9">Field Service</text>
+                    
+                    <!-- Project Service & Customer Insights -->
+                    <rect x="650" y="155" width="85" height="25" fill="rgba(0, 164, 239, 0.15)" stroke="#00A4EF" stroke-width="1" rx="4"/>
+                    <text x="692.5" y="172" text-anchor="middle" fill="white" font-size="9">Project Ops</text>
+                    
+                    <rect x="745" y="155" width="85" height="25" fill="rgba(0, 164, 239, 0.15)" stroke="#00A4EF" stroke-width="1" rx="4"/>
+                    <text x="787.5" y="172" text-anchor="middle" fill="white" font-size="9">Cust. Insights</text>
+                    
+                    <!-- Common Data Model note -->
+                    <rect x="650" y="185" width="180" height="20" fill="rgba(0, 164, 239, 0.08)" stroke="#00A4EF" stroke-width="1" rx="4"/>
+                    <text x="740" y="199" text-anchor="middle" fill="#B8BCC8" font-size="8">All Model-Driven Apps on Dataverse</text>
+                </g>
+
+                <!-- Process Automation (Left) - FIXED COLORS -->
+                <g id="process-automation">
+                    <rect x="50" y="260" width="220" height="140" fill="none" stroke="#742774" stroke-width="1.5" rx="8" opacity="0.4"/>
+                    <text x="160" y="280" text-anchor="middle" fill="#742774" font-family="Inter" font-size="13" font-weight="600">PROCESS AUTOMATION</text>
+                    
+                    <!-- Power Automate -->
+                    <rect x="70" y="295" width="180" height="35" fill="rgba(116,39,116,0.15)" stroke="#742774" stroke-width="1" rx="4"/>
+                    <text x="160" y="318" text-anchor="middle" fill="white" font-size="11">Power Automate</text>
+                    
+                    <!-- Logic Apps -->
+                    <rect x="70" y="340" width="180" height="35" fill="rgba(116,39,116,0.15)" stroke="#742774" stroke-width="1" rx="4"/>
+                    <text x="160" y="363" text-anchor="middle" fill="white" font-size="11">Logic Apps</text>
+                </g>
+
+                <!-- Analytics & Intelligence (Right) -->
+                <g id="analytics">
+                    <rect x="630" y="260" width="220" height="140" fill="none" stroke="#FF7000" stroke-width="1.5" rx="8" opacity="0.4"/>
+                    <text x="740" y="280" text-anchor="middle" fill="#FF7000" font-family="Inter" font-size="13" font-weight="600">ANALYTICS & INTELLIGENCE</text>
+                    
+                    <!-- Fabric -->
+                    <rect x="650" y="295" width="180" height="35" fill="rgba(255,112,0,0.15)" stroke="#FF7000" stroke-width="1" rx="4"/>
+                    <text x="740" y="318" text-anchor="middle" fill="white" font-size="11">Microsoft Fabric</text>
+                    
+                    <!-- Power BI -->
+                    <rect x="650" y="340" width="180" height="35" fill="rgba(255,112,0,0.15)" stroke="#FF7000" stroke-width="1" rx="4"/>
+                    <text x="740" y="363" text-anchor="middle" fill="white" font-size="11">Power BI</text>
+                </g>
+
+                <!-- AI Services (Bottom Left) -->
+                <g id="ai-services">
+                    <rect x="50" y="430" width="220" height="120" fill="none" stroke="#B794F6" stroke-width="1.5" rx="8" opacity="0.4"/>
+                    <text x="160" y="450" text-anchor="middle" fill="#B794F6" font-family="Inter" font-size="13" font-weight="600">AI SERVICES</text>
+                    
+                    <!-- Azure OpenAI -->
+                    <rect x="70" y="465" width="180" height="25" fill="rgba(183,148,246,0.15)" stroke="#B794F6" stroke-width="1" rx="4"/>
+                    <text x="160" y="482" text-anchor="middle" fill="white" font-size="10">Azure OpenAI</text>
+                    
+                    <!-- AI Builder -->
+                    <rect x="70" y="495" width="180" height="25" fill="rgba(183,148,246,0.15)" stroke="#B794F6" stroke-width="1" rx="4"/>
+                    <text x="160" y="512" text-anchor="middle" fill="white" font-size="10">AI Builder</text>
+                    
+                    <!-- Multi-Model -->
+                    <rect x="70" y="525" width="180" height="20" fill="rgba(183,148,246,0.1)" stroke="#B794F6" stroke-width="1" rx="4"/>
+                    <text x="160" y="539" text-anchor="middle" fill="#B8BCC8" font-size="9">Anthropic • OpenAI • Mistral • Gemini</text>
+                </g>
+
+                <!-- Integration & Platform (Bottom Right) -->
+                <g id="integration">
+                    <rect x="630" y="430" width="220" height="120" fill="none" stroke="#10A37F" stroke-width="1.5" rx="8" opacity="0.4"/>
+                    <text x="740" y="450" text-anchor="middle" fill="#10A37F" font-family="Inter" font-size="13" font-weight="600">INTEGRATION & PLATFORM</text>
+                    
+                    <!-- Azure Functions -->
+                    <rect x="650" y="465" width="180" height="25" fill="rgba(16,163,127,0.15)" stroke="#10A37F" stroke-width="1" rx="4"/>
+                    <text x="740" y="482" text-anchor="middle" fill="white" font-size="10">Azure Functions</text>
+                    
+                    <!-- Service Bus -->
+                    <rect x="650" y="495" width="180" height="25" fill="rgba(16,163,127,0.15)" stroke="#10A37F" stroke-width="1" rx="4"/>
+                    <text x="740" y="512" text-anchor="middle" fill="white" font-size="10">Service Bus / Event Hub</text>
+                    
+                    <!-- Security -->
+                    <rect x="650" y="525" width="180" height="20" fill="rgba(16,163,127,0.1)" stroke="#10A37F" stroke-width="1" rx="4"/>
+                    <text x="740" y="539" text-anchor="middle" fill="#B8BCC8" font-size="9">Key Vault • Entra ID • API Management</text>
+                </g>
+
+                <!-- Microsoft 365 (Bottom Center) - FIXED COLORS -->
+                <g id="m365">
+                    <rect x="320" y="450" width="260" height="70" fill="none" stroke="#D83B01" stroke-width="1" rx="8" opacity="0.3"/>
+                    <text x="450" y="470" text-anchor="middle" fill="#D83B01" font-family="Inter" font-size="12" font-weight="600">MICROSOFT 365</text>
+                    
+                    <rect x="340" y="485" width="220" height="25" fill="rgba(216,59,1,0.1)" stroke="#D83B01" stroke-width="1" rx="4"/>
+                    <text x="450" y="502" text-anchor="middle" fill="#B8BCC8" font-size="10">Graph • SharePoint • Teams • Outlook</text>
+                </g>
+
+                <!-- Connection Lines -->
+                <!-- Copilot to Dataverse -->
+                <path d="M450 190 L450 280" stroke="#8B57E8" stroke-width="2" opacity="0.5" stroke-dasharray="5,5"/>
+                <!-- UX to Dataverse -->
+                <path d="M270 200 L350 300" stroke="#B794F6" stroke-width="1.5" opacity="0.5" stroke-dasharray="5,5"/>
+                <!-- D365 to Dataverse -->
+                <path d="M630 220 L550 300" stroke="#00A4EF" stroke-width="1.5" opacity="0.5" stroke-dasharray="5,5"/>
+                <!-- Process to Dataverse - FIXED COLOR -->
+                <path d="M270 330 L350 330" stroke="#742774" stroke-width="2" opacity="0.5" stroke-dasharray="5,5"/>
+                <!-- Dataverse to Analytics -->
+                <path d="M550 330 L630 330" stroke="#FF7000" stroke-width="2" opacity="0.5" stroke-dasharray="5,5"/>
+                <!-- Dataverse to M365 - FIXED COLOR -->
+                <path d="M450 380 L450 450" stroke="#D83B01" stroke-width="1" opacity="0.3" stroke-dasharray="5,5"/>
+                <!-- AI to Copilot -->
+                <path d="M270 480 L360 190" stroke="#B794F6" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/>
+                <!-- Integration to everything -->
+                <path d="M630 480 L550 350" stroke="#10A37F" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/>
+
+                <!-- Animated pulse on Dataverse -->
+                <circle cx="450" cy="330" r="0" fill="none" stroke="#00D9FF" stroke-width="2" opacity="0.8">
+                    <animate attributeName="r" from="0" to="100" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="0.6" to="0" dur="4s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="section-header fade-in">
+            <div class="section-label">About</div>
+            <h2>Sensemaking in motion</h2>
+            <p style="max-width: 800px; margin: 1.5rem auto; font-size: 1.15rem; color: var(--gray); line-height: 1.8;">
+                Intelligence that flows through every layer of the Microsoft Cloud. JasmoSys designs systems that understand context, 
+                surface insights, and help teams make better decisions. From data to action to understanding, 
+                we create architectures where intelligence flows naturally through your organization.
+            </p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <h3>Who we are</h3>
+                <p>JasmoSys is a Microsoft-focused architecture consultancy led by <strong>Amir Naghmi</strong>, former Microsoft Principal Architect with deep expertise across the Microsoft business applications ecosystem.</p>
+                
+                <p>We've architected solutions at Microsoft scale, led Fortune 500 implementations, and built systems that work in the real world. From Power Platform foundations to AI-native Copilot deployments, JasmoSys brings that experience directly to your projects.</p>
+
+                <p>Our journey spans the entire evolution of Microsoft's business platform - from early CRM implementations to today's AI-powered, cloud-native architectures. We design systems where intelligence flows naturally through your organization.</p>
+            </div>
+
+            <div class="credentials-box fade-in">
+                <h4>Leadership & Expertise</h4>
+                <ul>
+                    <li>Principal Architect at Microsoft</li>
+                    <li>16+ years Microsoft business applications</li>
+                    <li>Power Platform architecture specialist</li>
+                    <li>Dynamics 365 Customer Engagement</li>
+                    <li>Copilot Studio & AI orchestration</li>
+                    <li>Enterprise governance & security</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="section-header fade-in">
+            <div class="section-label">Get Started</div>
+            <h2>Let's Talk</h2>
+            <p>Ready to design systems that move with your business?</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-info fade-in">
+                <div class="contact-method">
+                    <h4>📧 Email</h4>
+                    <a href="mailto:info@jasmosys.com">info@jasmosys.com</a>
+                    <p>For project inquiries and detailed discussions</p>
+                </div>
+
+                <div class="contact-method">
+                    <h4>💼 LinkedIn</h4>
+                    <a href="https://www.linkedin.com/in/amirnaghmi/" target="_blank">Connect with Amir →</a>
+                    <p>Direct connection with JasmoSys founder</p>
+                </div>
+
+                <div class="contact-method">
+                    <h4>📅 Schedule</h4>
+                    <a href="https://calendly.com/amir-jasmosys" target="_blank">Book 30 minutes →</a>
+                    <p>Technical discovery call - no commitment</p>
+                </div>
+            </div>
+
+            <div class="contact-container fade-in">
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">I'm interested in... *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select a service</option>
+                            <optgroup label="Architecture & Strategy">
+                                <option value="sprint">Microsoft Architecture Sprint (2-4 weeks)</option>
+                                <option value="assessment">Platform Assessment & Roadmap</option>
+                                <option value="migration">Legacy to Cloud Migration Strategy</option>
+                            </optgroup>
+                            <optgroup label="Implementation">
+                                <option value="build">Platform Flow Build (4-12 weeks)</option>
+                                <option value="dataverse">Dataverse Schema Design</option>
+                                <option value="powerautomate">Power Automate Workflows</option>
+                                <option value="modeldriven">Model-Driven Apps</option>
+                            </optgroup>
+                            <optgroup label="Copilot & AI">
+                                <option value="copilot">Copilot Governance & Enablement</option>
+                                <option value="copilot-studio">Copilot Studio Implementation</option>
+                                <option value="orchestration">Multi-Model AI Orchestration</option>
+                                <option value="prompt">Prompt Engineering & Grounding</option>
+                            </optgroup>
+                            <optgroup label="Support & Advisory">
+                                <option value="embedded">Embedded Architect (ongoing)</option>
+                                <option value="advisory">Technical Advisory (hourly)</option>
+                                <option value="troubleshooting">Performance & Troubleshooting</option>
+                            </optgroup>
+                            <option value="other">Something else / Not sure</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your Microsoft environment, timeline, and biggest challenge..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <svg width="48" height="48" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00D9FF;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#B794F6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M 20 50 Q 35 20, 50 50 T 80 50" stroke="url(#footerGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <path d="M 20 60 Q 35 80, 50 50 T 80 60" stroke="url(#footerGrad)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+            </svg>
+            <div class="footer-logo-text">JasmoSys</div>
+        </div>
+        <p><strong>© 2025 JasmoSys.</strong> Powered by Microsoft Cloud and open AI ecosystems.</p>
+        <p class="footer-tagline">Flow isn't automation. It's sensemaking.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced visible particles
+        const canvas = document.getElementById('flowCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class FlowParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radius = Math.random() * 3 + 1.5;
+                this.opacity = Math.random() * 0.6 + 0.5; // Brighter: 0.5-1.1 instead of 0.3-0.8
+                this.hue = Math.random() * 60 + 170; // Cyan to purple
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 4);
+                gradient.addColorStop(0, `hsla(${this.hue}, 90%, 65%, ${this.opacity})`);
+                gradient.addColorStop(1, `hsla(${this.hue}, 90%, 65%, 0)`);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+        }
+
+        const particles = Array.from({ length: 100 }, () => new FlowParticle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Connection lines - more visible
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        const opacity = (1 - distance / 150) * 0.6; // Increased from 0.4 to 0.6
+                        const avgHue = (p1.hue + p2.hue) / 2;
+                        ctx.strokeStyle = `hsla(${avgHue}, 90%, 65%, ${opacity})`;
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Scroll animations - improved
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Also observe cards and other animated elements
+        document.querySelectorAll('.product-card, .service-card, .why-item, .credential-item').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Form
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! We\'ll get back to you within 24 hours.\n\nIn production, connect this to your email service.');
+            event.target.reset();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
